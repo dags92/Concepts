@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Windows.Media.TextFormatting;
 using Experior.Core.Mathematics;
 using Experior.Core.Parts;
 using static Experior.Catalog.Concepts.Assemblies.RGV.RgvTrack;
@@ -41,8 +43,13 @@ namespace Experior.Catalog.Concepts.Assemblies.RGV
                 tempDelta = deltaTime * currentVelocity;
 
                 var diff = _currentTrajectory.Value.End.LocalPosition - _vehicle.LocalPosition;
-                var tempOrien = Trigonometry.Direction(_vehicle.LocalPosition, _currentTrajectory.Value.End.LocalPosition);
+                var tempOrientation = Trigonometry.Direction(_vehicle.LocalPosition, _currentTrajectory.Value.End.LocalPosition);
+                var deltaVector = Vector3.Transform(new Vector3(tempDelta, 0f, 0f), _vehicle.LocalOrientation);
 
+                if ((_vehicle.LocalPosition + deltaVector).Length() >= diff.Length())
+                {
+
+                }
             }
             else
             {
