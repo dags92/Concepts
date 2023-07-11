@@ -11,6 +11,17 @@ namespace Experior.Catalog.Concepts
 
     public class Create
     {
+        public static Assembly RgvTrack(string title, string subtitle, object properties)
+        {
+            var info = new RgvTrackInfo()
+            {
+                name = Experior.Core.Assemblies.Assembly.GetValidName("Rgv Track ")
+            };
+
+            var assembly = new RgvTrack(info);
+            return assembly;
+        }
+
         public static Assembly Rgv(string title, string subtitle, object properties)
         {
             var info = new RgvInfo

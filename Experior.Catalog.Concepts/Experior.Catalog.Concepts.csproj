@@ -45,6 +45,11 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Experior.Catalog.Xcelgo.Track, Version=7.0.22174.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Xcelgo\Xcelgo Experior 7\Experior.Catalog.Xcelgo.Track.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Experior.Core">
       <HintPath>$(OutputPath)Experior.Core.dll</HintPath>
       <Private>False</Private>
@@ -55,6 +60,11 @@
     </Reference>
     <Reference Include="Experior.Rendering.Interfaces">
       <HintPath>$(OutputPath)Experior.Rendering.Interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Experior.Utils.Feeder, Version=7.0.22174.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Xcelgo\Xcelgo Experior 7\Experior.Utils.Feeder.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -72,12 +82,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assemblies\RGV\Controller.cs" />
-    <Compile Include="Assemblies\RGV\CurveTrajectory.cs" />
-    <Compile Include="Assemblies\RGV\ITrajectory.cs" />
     <Compile Include="Assemblies\RGV\Rgv.cs" />
-    <Compile Include="Assemblies\RGV\StraightTrajectory.cs" />
+    <Compile Include="Assemblies\RGV\RgvTrack.cs" />
     <Compile Include="Create.cs" />
-    <Compile Include="MyCatalog.cs" />
+    <Compile Include="Concepts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
