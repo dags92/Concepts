@@ -13,14 +13,11 @@ namespace Experior.Catalog.Concepts.Assemblies.RGV
         #region Fields
 
         private readonly RgvInfo _info;
+
+        private Controller _controller;
         private string _trackName = "";
         private RgvTrack _track;
 
-        private readonly Experior.Core.Parts.Box _vehicle;
-
-        private readonly Controller _controller;
-
-        private bool _move;
         private readonly float _speed = 0.2f; // TODO: Change it later to use acceleration and deceleration...
 
         #endregion
@@ -31,15 +28,16 @@ namespace Experior.Catalog.Concepts.Assemblies.RGV
         {
             _info = info;
 
-            _vehicle = new Box(Colors.Blue, 0.2f, 0.2f, 0.2f);
-            Add(_vehicle);
-
-            _controller = new Controller(_vehicle);
+            var vehicle = new Box(Colors.Blue, 0.2f, 0.2f, 0.2f);
+            Add(vehicle);
         }
 
         #endregion
 
         #region Public Properties
+
+        [Browsable(false)]
+        public bool MoveVehicle { get; set; }
 
         [Category("Track")]
         public string TrackName
@@ -55,6 +53,8 @@ namespace Experior.Catalog.Concepts.Assemblies.RGV
 
                 _trackName = value;
                 _track = rgvTrack;
+                _track.Add(this);
+                _controller = new Controller(this, _track.Tracks);
 
                 Position = rgvTrack.Position;
             }
@@ -70,20 +70,12 @@ namespace Experior.Catalog.Concepts.Assemblies.RGV
 
         public override void Step(float deltatime)
         {
-            if (!_move)
+            if (!MoveVehicle)
             {
                 return;
             }
 
             _controller.Step(deltatime, _speed);
-        }
-
-        public override void KeyDown(KeyEventArgs e)
-        {
-            if (e.Key == Key.A)
-            {
-                _move = !_move;
-            }
         }
 
         #endregion
